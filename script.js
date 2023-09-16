@@ -38,7 +38,19 @@ for (let i = 0;i < rows;i++) {
         cell.setAttribute("cid", j);
 
         rowCont.appendChild(cell);
-       // addListenerForAddressBarDisplay(cell, i, j);
+        addListenerForAddressBarDisplay(cell, i, j);
     }
     cellsCont.appendChild(rowCont);
 }
+
+function addListenerForAddressBarDisplay(cell, i, j) {
+    cell.addEventListener("click", (e) => {
+        let rowID = i+1;
+        let colID = String.fromCharCode(65 + j);
+        addressBar.value = `${colID}${rowID}`;
+    })
+}
+
+// select first cell from the start
+let firstCell=document.querySelector('.cell')
+firstCell.click()
