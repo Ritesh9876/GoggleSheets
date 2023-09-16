@@ -192,7 +192,7 @@ function addListenerToAttachCellProperties(cell) {
 
         let formulaBar = document.querySelector(".formula-bar");
         formulaBar.value = cellProp.formula;
-       // cell.innerText = cellProp.value;
+        cell.innerText = cellProp.value;
     })
 }
 
@@ -200,6 +200,7 @@ function getCellAndCellProp(address) {
     let [rid, cid] = decodeRIDCIDFromAddress(address);
     
     let cell = document.querySelector(`.cell[rid="${rid}"][cid="${cid}"]`); // cell with className cell and with attribute rid and cid
+   // console.log("row and col ",rid,cid)
     let cellProp = sheetDB[rid][cid];
     return [cell, cellProp];
 }
