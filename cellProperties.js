@@ -1,27 +1,32 @@
 let collectedSheetDB = [];  //Contains all SheetDB
 let sheetDB = [];
 
-for (let i = 0; i < rows; i++) {
-    let sheetRow = [];
-    for (let j = 0; j < cols; j++) {
-        let cellProp = {
-            bold: false,
-            italic: false,
-            underline: false,
-            alignment: "left",
-            fontFamily: "monospace",
-            fontSize: "14",
-            fontColor: "#000000",
-            BGcolor: "#000000",  // Just for indication purpose,
-            value: "",
-            formula: "",
-            children: [],
-        }
-        sheetRow.push(cellProp);
-    }
-    sheetDB.push(sheetRow);
-}
+// for (let i = 0; i < rows; i++) {
+//     let sheetRow = [];
+//     for (let j = 0; j < cols; j++) {
+//         let cellProp = {
+//             bold: false,
+//             italic: false,
+//             underline: false,
+//             alignment: "left",
+//             fontFamily: "monospace",
+//             fontSize: "14",
+//             fontColor: "#000000",
+//             BGcolor: "#000000",  // Just for indication purpose,
+//             value: "",
+//             formula: "",
+//             children: [],
+//         }
+//         sheetRow.push(cellProp);
+//     }
+//     sheetDB.push(sheetRow);
+// }
 
+
+{
+    let addSheetBtn = document.querySelector(".sheet-add-icon");
+    addSheetBtn.click()
+}
 // selectors for applying properties to the cell
 let bold = document.querySelector(".bold");
 let italic = document.querySelector(".italic");

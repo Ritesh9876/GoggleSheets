@@ -115,6 +115,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.sheet-content{
+  width:5rem; 
+}
 .grid-cont {
   height: calc(100vh - 3rem - 3rem - 2rem - 3rem);
   position: relative;

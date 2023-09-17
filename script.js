@@ -51,6 +51,3 @@ function addListenerForAddressBarDisplay(cell, i, j) {
     })
 }
 
-// select first cell from the start
-let firstCell=document.querySelector('.cell')
-firstCell.click()

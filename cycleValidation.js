@@ -1,15 +1,15 @@
 let collectedGraphComponent = [];
 let graphComponentMatrix = [];
 
-for(let i=0;i<rows;i++)
-{
-    let row=[]
-    for(let j=0;j<cols;j++)
-    {
-        row.push([])
-    }
-    graphComponentMatrix.push(row)
-}
+// for(let i=0;i<rows;i++)
+// {
+//     let row=[]
+//     for(let j=0;j<cols;j++)
+//     {
+//         row.push([])
+//     }
+//     graphComponentMatrix.push(row)
+// }
 
 function isGraphCylic(graphComponentMatrix) {
     let visited = []; 
