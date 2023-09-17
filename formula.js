@@ -33,12 +33,15 @@ formulaBar.addEventListener("keydown", async (e) => {
         addChildToGraphComponent(inputFormula, address);
 
         let cycleResponse = isGraphCylic(graphComponentMatrix);
-        if(cycleResponse){
-            alert("cycle is present ")
-
+        if (cycleResponse) {
+            let response = confirm("Your formula is cyclic. Do you want to trace your path?");
+            while (response === true) {
+                await isGraphCylicTracePath(graphComponentMatrix, cycleResponse);
+                response = confirm("Your formula is cyclic. Do you want to trace your path?");
+            }
 
             removeChildFromGraphComponent(inputFormula, address);
-            return
+            return;
         }
         setCellUIAndCellProp(evaluatedValue,inputFormula,address) // update values
         addChildToParent(inputFormula) // as this cell contains dependencies it becomes child of other cells
