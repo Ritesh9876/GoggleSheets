@@ -30,6 +30,16 @@ formulaBar.addEventListener("keydown", async (e) => {
         // As formula has changed we need to remove this child from children's array of the its parent
         if (inputFormula !== cellProp.formula) removeChildFromParent(cellProp.formula);
 
+        addChildToGraphComponent(inputFormula, address);
+
+        let cycleResponse = isGraphCylic(graphComponentMatrix);
+        if(cycleResponse){
+            alert("cycle is present ")
+
+
+            removeChildFromGraphComponent(inputFormula, address);
+            return
+        }
         setCellUIAndCellProp(evaluatedValue,inputFormula,address) // update values
         addChildToParent(inputFormula) // as this cell contains dependencies it becomes child of other cells
 
@@ -65,6 +75,32 @@ function addChildToParent(formula) {
     }
 }
 
+function removeChildFromGraphComponent(formula, childAddress) {
+    let [crid, ccid] = decodeRIDCIDFromAddress(childAddress);
+    let encodedFormula = formula.split(" ");
+
+    for (let i = 0; i < encodedFormula.length; i++) {
+        let asciiValue = encodedFormula[i].charCodeAt(0);
+        if (asciiValue >= 65 && asciiValue <= 90) {
+            let [prid, pcid] = decodeRIDCIDFromAddress(encodedFormula[i]);
+            graphComponentMatrix[prid][pcid].pop();
+        }
+    }
+}
+
+function addChildToGraphComponent(formula, childAddress) {
+    let [crid, ccid] = decodeRIDCIDFromAddress(childAddress);
+    let encodedFormula = formula.split(" ");
+    for (let i = 0; i < encodedFormula.length; i++) {
+        let asciiValue = encodedFormula[i].charCodeAt(0);
+        if (asciiValue >= 65 && asciiValue <= 90) {
+            let [prid, pcid] = decodeRIDCIDFromAddress(encodedFormula[i]);
+            // B1: A1 + 10
+            // rid -> i, cid -> j
+            graphComponentMatrix[prid][pcid].push([crid, ccid]);
+        }
+    }
+}
 function removeChildFromParent(formula) {
     let childAddress = addressBar.value;
     let encodedFormula = formula.split(" ");
